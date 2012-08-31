@@ -74,6 +74,9 @@ and the derived files           changelist.ins,
 \generate{
     \file{\jobname.sty}{\from{\jobname.dtx}{package}}
 }
+\generate{
+    \file{french.cfg}{\from{\jobname.dtx}{babel-french}}
+}
 %</install>
 %<install>\endbatchfile
 %<*internal>
@@ -108,6 +111,15 @@ and the derived files           changelist.ins,
     \DocInput{\jobname.dtx}
 \end{document}
 %</driver>
+%<*babel-french>
+\addto{\captionsfrench}{%
+    \newcommand{\clchangelistname}{Versions}
+    \newcommand{\clversionname}{Version}
+    \newcommand{\cldatename}{Date}
+    \newcommand{\clauthorname}{Auteur}
+    \newcommand{\cldescname}{Description}
+}
+%</babel-french>
 %
 % \fi
 %
@@ -209,7 +221,8 @@ and the derived files           changelist.ins,
 % \label{sub:i18n}
 %   The change list name and the table headers are translated using the
 %   mechanisms defined in the |babel| package.
-%   Currently two languages have been defined: english and french.
+%   Currently two languages have been defined: english (the default,
+%   defined directly in the |sty| file) and french.
 %
 %   \DescribeMacro{\clchangelistname}
 %   The \cs{changelistname} contains the name of the section printed by
