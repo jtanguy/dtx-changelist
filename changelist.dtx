@@ -1,64 +1,136 @@
-% \iffalse (meta-comment)
-%
-% Doc-Source file to use with LaTeX2e
-%
-% Copyright 2012 by Julien Tanguy (julien.tanguy@jhome.fr).
-% All rights reserved.
-%
-% This work may be distributed and/or modified under the conditions of
-% the LaTeX Project Public License, either version 1.3 of this license
-% or (at your option) any later version. The latest version of the
-% license is in
-%
-%     http://www.latex-project.org/lppl.txt
-%
-% and version 1.3 or later is part of all distributions of LaTeX
-% version 2003/12/01 or later.
-%
-% This work has the LPPL maintenance status "maintained".
-% The Current Maintainer of this work is Julien Tanguy (julien.tanguy@jhome.fr).
-%
+% \iffalse meta-comment
+%<*internal>
+\iffalse
+%</internal>
+%<*readme>
+Changelist package --- Manage change lists
+
+License
+=======
+Copyright 2012 by Julien Tanguy (julien.tanguy@jhome.fr).
+All rights reserved.
+
+This work may be distributed and/or modified under the conditions of
+the LaTeX Project Public License, either version 1.3 of this license
+or (at your option) any later version. The latest version of the
+license is in
+
+    http://www.latex-project.org/lppl.txt
+
+and version 1.3 or later is part of all distributions of LaTeX
+version 2003/12/01 or later.
+
+This work has the LPPL maintenance status "maintained".
+The Current Maintainer of this work is Julien Tanguy (julien.tanguy@jhome.fr).
+
+Installation
+============
+To generate the package and the associated documentation, run
+
+    pdflatex changelist.dtx
+
+%</readme>
+%<*internal>
+\fi
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+  \expandafter\begingroup
+\fi
+%</internal>
+%<*install>
+\input docstrip.tex
+\keepsilent
+\askforoverwritefalse
+\preamble
+----------------------------------------------------------------
+changelist --- Manage change lists
+E-mail: julien.tanguy@jhome.fr
+Released under the LaTeX Project Public License v1.3c or later
+See http://www.latex-project.org/lppl.txt
+----------------------------------------------------------------
+
+\endpreamble
+\postamble
+
+Copyright (C) 2012 by Julien Tanguy <julien.tanguy@jhome.fr>
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License (LPPL), either
+version 1.3c of this license or (at your option) any later
+version.  The latest version of this license is in the file:
+
+http://www.latex-project.org/lppl.txt
+
+This work is "maintained" (as per LPPL maintenance status) by
+Julien Tanguy.
+
+This work consists of the file  changelist.dtx
+and the derived files           changelist.ins,
+                                changelist.pdf and
+                                changelist.sty.
+
+\endpostamble
+\usedir{tex/latex/changelist}
+\generate{
+    \file{\jobname.sty}{\from{\jobname.dtx}{package}}
+}
+%</install>
+%<install>\endbatchfile
+%<*internal>
+\usedir{source/latex/changelist}
+\generate{
+    \file{\jobname.ins}{\from{\jobname.dtx}{install}}
+}
+\nopreamble\nopostamble
+\usedir{doc/latex/changelist}
+\generate{
+    \file{README.txt}{\from{\jobname.dtx}{readme}}
+}
+\ifx\fmtname\nameofplainTeX
+\expandafter\endbatchfile
+\else
+\expandafter\endgroup
+\fi
+%</internal>
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{changelist}[2012/08/13 v0.2 Manage change lists]
+\ProvidesPackage{changelist}[2012/08/13 v0.3 Manage change lists]
 %</package>
 %<*driver>
 \documentclass{ltxdoc}
-\usepackage{changelist}   % to get file info
+\usepackage{\jobname}   % to get file info
 \EnableCrossrefs
 %\DisableCrossrefs     % say \DisableCrossrefs if index is ready
 \CodelineIndex
 \RecordChanges         % gather update information
 %\OnlyDescription      % comment out for implementation details
-%\OldMakeindex         % use if your MakeIndex is pre-v2.9
-\setlength\hfuzz{15pt} % dont make so many
-\hbadness=7000         % over and under full box warnings
 \begin{document}
-    \DocInput{changelist.dtx}
+    \DocInput{\jobname.dtx}
 \end{document}
 %</driver>
+%
+% \CheckSum{70}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
 % \fi
-%
-%% \CheckSum{70}
-%
-%% \CharacterTable
-%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
-%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
-%%   Digits        \0\1\2\3\4\5\6\7\8\9
-%%   Exclamation   \!     Double quote  \"     Hash (number) \#
-%%   Dollar        \$     Percent       \%     Ampersand     \&
-%%   Acute accent  \'     Left paren    \(     Right paren   \)
-%%   Asterisk      \*     Plus          \+     Comma         \,
-%%   Minus         \-     Point         \.     Solidus       \/
-%%   Colon         \:     Semicolon     \;     Less than     \<
-%%   Equals        \=     Greater than  \>     Question mark \?
-%%   Commercial at \@     Left bracket  \[     Backslash     \\
-%%   Right bracket \]     Circumflex    \^     Underscore    \_
-%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
-%%   Right brace   \}     Tilde         \~}
-%%
-%  \changes{v0.1}{2012/07/10}{Initial release}
-%  \changes{v0.2}{2012/08/31}{Dtx format}
+% \changes{v0.1}{2012/07/10}{Initial release}
+% \changes{v0.2}{2012/08/31}{Dtx format}
+% \changes{v0.3}{2012/08/31}{Self contained dtx}
 %
 % \GetFileInfo{changelist.sty}
 %
@@ -153,7 +225,6 @@
 %
 % \StopEventually{^^A
 %  \PrintChanges
-%  \PrintIndex
 %}
 %
 % \section{Implementation}
@@ -251,4 +322,4 @@
 \endinput
 %</package>
 %    \end{macrocode}
-%   \Finale
+%\Finale
