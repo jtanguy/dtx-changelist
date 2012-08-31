@@ -1,0 +1,254 @@
+% \iffalse (meta-comment)
+%
+% Doc-Source file to use with LaTeX2e
+%
+% Copyright 2012 by Julien Tanguy (julien.tanguy@jhome.fr).
+% All rights reserved.
+%
+% This work may be distributed and/or modified under the conditions of
+% the LaTeX Project Public License, either version 1.3 of this license
+% or (at your option) any later version. The latest version of the
+% license is in
+%
+%     http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2003/12/01 or later.
+%
+% This work has the LPPL maintenance status "maintained".
+% The Current Maintainer of this work is Julien Tanguy (julien.tanguy@jhome.fr).
+%
+%<*package>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{changelist}[2012/08/13 v0.2 Manage change lists]
+%</package>
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{changelist}   % to get file info
+\EnableCrossrefs
+%\DisableCrossrefs     % say \DisableCrossrefs if index is ready
+\CodelineIndex
+\RecordChanges         % gather update information
+%\OnlyDescription      % comment out for implementation details
+%\OldMakeindex         % use if your MakeIndex is pre-v2.9
+\setlength\hfuzz{15pt} % dont make so many
+\hbadness=7000         % over and under full box warnings
+\begin{document}
+    \DocInput{changelist.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+%% \CheckSum{70}
+%
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%%
+%  \changes{v0.1}{2012/07/10}{Initial release}
+%  \changes{v0.2}{2012/08/31}{Dtx format}
+%
+% \GetFileInfo{changelist.sty}
+%
+% \title{Version tracking and change lists for \LaTeXe documents\thanks{^^A
+%        This file has version number \fileversion,
+%        last revised \filedate.}}
+% \author{Julien Tanguy}
+% \date{\filedate}
+% \maketitle
+%
+%
+% \section{Introduction}
+%   When writing design documents and reports for my company, I needed to 
+%   keep track of the different versions. Of course the documents were
+%   under \emph{version control}, but when sharing documents with clients, 
+%   giving the revision of the document was not acceptable.
+%
+%   First, the idea of the revision implies a revision-based version
+%   control system (VCS), like svn. When working with git or mercurial
+%   or any other distributed VCS which does not have the notion of 
+%   incremental revisions, the commit hash doesn't help at all.
+%
+%   Another problem with giving revision numbers is that the versions
+%   of a document need to be incremental and self-contained:
+%   A list of versions like \emph{v1.0}, \emph{v1.1}, \emph{2.0}
+%   are clear enough about the evolutions between two versions,
+%   provided a consistent versioning policy is defined and respected
+%   throughout the entire process.
+%
+%   The same can not be applied when given revision numbers, like
+%   \emph{82}, \emph{124} and \emph{125}.
+%
+%   The functionnality offered by this package is similar to the
+%   \cs{changes} command provided by the |docstrip| package.
+%   However, this package lets us define \emph{draft} versions of the
+%   document, which will not appear in the final output.
+%   This makes tracking intermediate changes easier.
+%
+% \section{The user interface}
+%   The package provides three main commands to record and print changes.
+%   The change list is printed with internationalized names.
+%   Adding new languages is described in section~\ref{sub:i18n}
+%
+% \subsection{Recording changes}
+%
+%   \DescribeMacro{\final}
+%   \DescribeMacro{\draft}
+%   To record a version of the document, use one of the following commands:
+%   \begin{quote}
+%    |\draft|\marg{version}\marg{date}\marg{author}\marg{description}
+%
+%    |\final|\marg{version}\marg{date}\marg{author}\marg{description}
+%   \end{quote}
+%   These commands can appear anywhere before the \cs{printchangelist}
+%   command, but keep in mind that the order in which the versions are
+%   described in the \LaTeX source will be the same in the formatted
+%   output. One good practice can be to put them into the preamble.
+
+%   The \meta{version} can be any version number, like ``v0.1'' or
+%   ``AA001''.
+%   The \meta{date} is defined as the date of the version. Make sure you
+%   do \emph{not} use commands like \cs{today} or it will be meaningless!
+%   The \meta{author} records the author of the version, and the
+%   \meta{description} gives a short summary of the version.
+%
+%   \DescribeMacro{printchangelist}
+%   To print the change list, use the command \cs{printchangelist}.
+%   This command creates a starred |section*| or |chapter*|, depending of
+%   whether the \cs{chapter} is defined in the current class or not.
+%   The change list is printed afterwards, inside a |tabularx| environment.
+%
+% \subsection{Internationalization}
+% \label{sub:i18n}
+%   The change list name and the table headers are translated using the
+%   mechanisms defined in the |babel| package.
+%   Currently two languages have been defined: english and french.
+%
+%   \DescribeMacro{\clchangelistname}
+%   The \cs{changelistname} contains the name of the section printed by
+%   the \cs{printchangelist} macro. It defaults to ``Change list''.
+%   
+%   \DescribeMacro{\clversionname}
+%   \DescribeMacro{\cldatename}
+%   \DescribeMacro{\clauthorname}
+%   \DescribeMacro{\cldescname}
+%   These commands contain the text with appear in the column headers of
+%   the change list table. Defaults: ``Version'', ``Date'', ``Author'' and
+%   ``Description''.
+%
+%   Adding new language can be used bu creating a new |cfg| file with the
+%   name of the language (see the provided |english.cfg| and |french.cfg|).
+%
+% \StopEventually{^^A
+%  \PrintChanges
+%  \PrintIndex
+%}
+%
+% \section{Implementation}
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%
+%
+% \subsection{Required packages}
+%   The |ifdraft| and |tabularx| packages are required.
+%    \begin{macrocode}
+\RequirePackage{ifdraft}
+\RequirePackage{tabularx}
+%    \end{macrocode}
+%
+% \subsection{Setup macros}
+%    \begin{macro}{\changelist@list}
+%   The \cs{changelist@list} token list stores the described versions.
+%    \begin{macrocode}
+\newtoks\changelist@list
+\changelist@list{}
+%    \end{macrocode}
+%    \end{macro}
+%
+%    \begin{macro}{\clchangelistname}
+%    \begin{macro}{\clversionname}
+%    \begin{macro}{\cldatename}
+%    \begin{macro}{\clauthorname}
+%    \begin{macro}{\cldescname}
+%   The caption names are defined.
+%    \begin{macrocode}
+\newcommand{\clchangelistname}{Change list}
+\newcommand{\clversionname}{Version}
+\newcommand{\cldatename}{Date}
+\newcommand{\clauthorname}{Author}
+\newcommand{\cldescname}{Description}
+%    \end{macrocode}
+%    \end{macro}
+%    \end{macro}
+%    \end{macro}
+%    \end{macro}
+%    \end{macro}
+%
+% \subsection{Record macros}
+%   \begin{macro}{\final}
+%   The \cs{final} macro always adds a version to the change list.
+%    \begin{macrocode}
+\newcommand{\final}[4]{%
+  \changelist@list=\expandafter{%
+      \the\changelist@list #1&#2&#3&#4\\\hline}
+}
+%    \end{macrocode}
+%    \end{macro}
+%
+%    \begin{macro}{\draft}
+%   The \cs{draft} command adds a version only if the document is draft.
+%   The item is added in emphasized font.
+%    \begin{macrocode}
+\newcommand{\draft}[4]{%
+  \ifdraft{%
+    \changelist@list=\expandafter{%
+        \the\changelist@list \emph{#1}&\emph{#2}&\emph{#3}&\emph{#4}\\\hline}
+  }{%
+    \relax
+  }
+}
+%    \end{macrocode}
+%    \end{macro}
+%
+% \subsection{Printing the change list}
+%    \begin{macro}{\printchangelist}
+%   The \cs{printchangelist} macro add a starred chapter or article (depending on the class) and the table of versions.
+%    \begin{macrocode}
+\newcommand{\printchangelist}{%
+  \ifx\chapter\@undefined
+    \section*{\clchangelistname}
+  \else
+    \chapter*{\clchangelistname}
+  \fi
+  \noindent
+  \begin{tabularx}{\textwidth}{|c|c|c|X|}
+    \hline
+    \textbf{\clversionname} &
+    \textbf{\cldatename}    &
+    \textbf{\clauthorname}  &
+    \textbf{\cldescname}    \\ \hline
+    \the\changelist@list
+  \end{tabularx}
+  \bigskip
+}
+%    \end{macrocode}
+%    \end{macro}
+%
+%    \begin{macrocode}
+\endinput
+%</package>
+%    \end{macrocode}
+%   \Finale
