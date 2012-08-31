@@ -109,38 +109,41 @@ and the derived files           changelist.ins,
 \end{document}
 %</driver>
 %
-% \CheckSum{70}
-%
-% \CharacterTable
-%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
-%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
-%   Digits        \0\1\2\3\4\5\6\7\8\9
-%   Exclamation   \!     Double quote  \"     Hash (number) \#
-%   Dollar        \$     Percent       \%     Ampersand     \&
-%   Acute accent  \'     Left paren    \(     Right paren   \)
-%   Asterisk      \*     Plus          \+     Comma         \,
-%   Minus         \-     Point         \.     Solidus       \/
-%   Colon         \:     Semicolon     \;     Less than     \<
-%   Equals        \=     Greater than  \>     Question mark \?
-%   Commercial at \@     Left bracket  \[     Backslash     \\
-%   Right bracket \]     Circumflex    \^     Underscore    \_
-%   Grave accent  \`     Left brace    \{     Vertical bar  \|
-%   Right brace   \}     Tilde         \~}
-%
 % \fi
+%
+%% \CheckSum{70}
+%%
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%
+%
 % \changes{v0.1}{2012/07/10}{Initial release}
 % \changes{v0.2}{2012/08/31}{Dtx format}
 % \changes{v0.3}{2012/08/31}{Self contained dtx}
 %
 % \GetFileInfo{changelist.sty}
 %
-% \title{Version tracking and change lists for \LaTeXe documents\thanks{^^A
+% \title{The changelist package: \fileinfo\ for \LaTeXe\ documents\thanks{^^A
 %        This file has version number \fileversion,
 %        last revised \filedate.}}
 % \author{Julien Tanguy}
 % \date{\filedate}
 % \maketitle
 %
+% \PrintChanges
 %
 % \section{Introduction}
 %   When writing design documents and reports for my company, I needed to 
@@ -180,9 +183,9 @@ and the derived files           changelist.ins,
 %   \DescribeMacro{\draft}
 %   To record a version of the document, use one of the following commands:
 %   \begin{quote}
-%    |\draft|\marg{version}\marg{date}\marg{author}\marg{description}
+%    \cs{draft}\marg{version}\marg{date}\marg{author}\marg{description}
 %
-%    |\final|\marg{version}\marg{date}\marg{author}\marg{description}
+%    \cs{final}\marg{version}\marg{date}\marg{author}\marg{description}
 %   \end{quote}
 %   These commands can appear anywhere before the \cs{printchangelist}
 %   command, but keep in mind that the order in which the versions are
@@ -224,7 +227,7 @@ and the derived files           changelist.ins,
 %   name of the language (see the provided |english.cfg| and |french.cfg|).
 %
 % \StopEventually{^^A
-%  \PrintChanges
+%  \PrintIndex
 %}
 %
 % \section{Implementation}
@@ -232,8 +235,6 @@ and the derived files           changelist.ins,
 %<*package>
 %    \end{macrocode}
 %
-%
-% \subsection{Required packages}
 %   The |ifdraft| and |tabularx| packages are required.
 %    \begin{macrocode}
 \RequirePackage{ifdraft}
@@ -286,7 +287,8 @@ and the derived files           changelist.ins,
 \newcommand{\draft}[4]{%
   \ifdraft{%
     \changelist@list=\expandafter{%
-        \the\changelist@list \emph{#1}&\emph{#2}&\emph{#3}&\emph{#4}\\\hline}
+        \the\changelist@list
+        \emph{#1}&\emph{#2}&\emph{#3}&\emph{#4}\\\hline}
   }{%
     \relax
   }
