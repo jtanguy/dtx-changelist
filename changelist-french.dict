@@ -1,0 +1,6 @@
+\ProvidesDictionary{changelist}{French}
+\providetranslation{Change list}{Liste des versions}
+\providetranslation{Version}{Version}
+\providetranslation{Date}{Date}
+\providetranslation{Author}{Auteur}
+\providetranslation{Description}{Description}
