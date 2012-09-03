@@ -73,26 +73,24 @@ and the derived files           changelist.ins,
 \usedir{tex/latex/changelist}
 \generate{
     \file{\jobname.sty}{\from{\jobname.dtx}{package}}
-}
-\generate{
-    \file{french.cfg}{\from{\jobname.dtx}{babel-french}}
+    \file{frenchb.cfg}{\from{\jobname.dtx}{babel-french}}
 }
 %</install>
 %<install>\endbatchfile
 %<*internal>
 \usedir{source/latex/changelist}
+\nopreamble\nopostamble
 \generate{
     \file{\jobname.ins}{\from{\jobname.dtx}{install}}
 }
-\nopreamble\nopostamble
 \usedir{doc/latex/changelist}
 \generate{
     \file{README.txt}{\from{\jobname.dtx}{readme}}
 }
 \ifx\fmtname\nameofplainTeX
-\expandafter\endbatchfile
+    \expandafter\endbatchfile
 \else
-\expandafter\endgroup
+    \expandafter\endgroup
 \fi
 %</internal>
 %<*package>
@@ -113,33 +111,33 @@ and the derived files           changelist.ins,
 %</driver>
 %<*babel-french>
 \addto{\captionsfrench}{%
-    \newcommand{\clchangelistname}{Versions}
-    \newcommand{\clversionname}{Version}
-    \newcommand{\cldatename}{Date}
-    \newcommand{\clauthorname}{Auteur}
-    \newcommand{\cldescname}{Description}
+    \renewcommand{\clchangelistname}{Versions}
+    \renewcommand{\clversionname}{Version}
+    \renewcommand{\cldatename}{Date}
+    \renewcommand{\clauthorname}{Auteur}
+    \renewcommand{\cldescname}{Description}
 }
 %</babel-french>
 %
 % \fi
 %
-%% \CheckSum{70}
-%%
-%% \CharacterTable
-%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
-%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
-%%   Digits        \0\1\2\3\4\5\6\7\8\9
-%%   Exclamation   \!     Double quote  \"     Hash (number) \#
-%%   Dollar        \$     Percent       \%     Ampersand     \&
-%%   Acute accent  \'     Left paren    \(     Right paren   \)
-%%   Asterisk      \*     Plus          \+     Comma         \,
-%%   Minus         \-     Point         \.     Solidus       \/
-%%   Colon         \:     Semicolon     \;     Less than     \<
-%%   Equals        \=     Greater than  \>     Question mark \?
-%%   Commercial at \@     Left bracket  \[     Backslash     \\
-%%   Right bracket \]     Circumflex    \^     Underscore    \_
-%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
-%%   Right brace   \}     Tilde         \~}
+% \CheckSum{70}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
 %
 %
 % \changes{v0.1}{2012/07/10}{Initial release}
@@ -203,7 +201,7 @@ and the derived files           changelist.ins,
 %   command, but keep in mind that the order in which the versions are
 %   described in the \LaTeX source will be the same in the formatted
 %   output. One good practice can be to put them into the preamble.
-
+%
 %   The \meta{version} can be any version number, like ``v0.1'' or
 %   ``AA001''.
 %   The \meta{date} is defined as the date of the version. Make sure you
