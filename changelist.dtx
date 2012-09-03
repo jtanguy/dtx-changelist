@@ -28,6 +28,21 @@ Installation
 To generate the package and the associated documentation, run
 
     pdflatex changelist.dtx
+    makeindex -s gind.ist -o changelist.ind changelist.idx
+    makeindex -s gglo.ist -o changelist.gls changelist.glo
+    pdflatex changelist.dtx
+
+Then you need to move all files to their appropriate location in your home TDS tree.[^1]
+
+    changelist.dtx --> $TEXMFHOME/source/latex/changelist/
+    changelist.ins --> $TEXMFHOME/source/latex/changelist/
+    changelist.sty --> $TEXMFHOME/tex/latex/changelist/
+    frenchb.cfg    --> $TEXMFHOME/tex/latex/changelist/
+    changelist.pdf --> $TEXMFHOME/doc/latex/changelist/
+
+[^1]: If you don't know where is your home TDS tree or what is a TDS tree,
+      pleasr contact the author for more information
+
 
 %</readme>
 %<*internal>
@@ -66,10 +81,12 @@ Julien Tanguy.
 
 This work consists of the file  changelist.dtx
 and the derived files           changelist.ins,
-                                changelist.pdf and
-                                changelist.sty.
+                                changelist.pdf,
+                                changelist.sty end
+                                frenchb.cfg.
 
 \endpostamble
+\UseTDS
 \usedir{tex/latex/changelist}
 \generate{
     \file{\jobname.sty}{\from{\jobname.dtx}{package}}
@@ -155,6 +172,11 @@ and the derived files           changelist.ins,
 % \maketitle
 %
 % \PrintChanges
+% \DoNotIndex{\@undefined, \\, \begin, \end, \bigskip, \chapter}
+% \DoNotIndex{\else, \emph, \endinput, \expandafter, \fi, \hline}
+% \DoNotIndex{\ifdraft, \ifx, \newcommand, \newtoks, \noindent}
+% \DoNotIndex{\relax, \RequirePackage, \section, \textbf, \textwidth}
+% \DoNotIndex{\the}
 %
 % \section{Introduction}
 %   When writing design documents and reports for my company, I needed to 
