@@ -111,7 +111,7 @@ and the derived files           changelist.ins,
 %</internal>
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{changelist}[2012/08/13 v0.4 Manage change lists]
+\ProvidesPackage{changelist}[2012/10/15 v0.5 Manage change lists]
 %</package>
 %<*driver>
 \documentclass{ltxdoc}
@@ -127,11 +127,15 @@ and the derived files           changelist.ins,
 %</driver>
 %<*babel-french>
 \addto{\captionsfrench}{%
+\ifx\clchangelistname\undefined
+    \relax
+\else
     \renewcommand{\clchangelistname}{Versions}
     \renewcommand{\clversionname}{Version}
     \renewcommand{\cldatename}{Date}
     \renewcommand{\clauthorname}{Auteur}
     \renewcommand{\cldescname}{Description}
+\fi
 }
 %</babel-french>
 %
@@ -160,6 +164,7 @@ and the derived files           changelist.ins,
 % \changes{v0.2}{2012/08/31}{Dtx format}
 % \changes{v0.3}{2012/08/31}{Self contained dtx}
 % \changes{v0.4}{2012/09/03}{Babel support for french}
+% \changes{v0.5}{2012/10/15}{Add check to babel config file to avoid break in files not using changelist}
 %
 % \GetFileInfo{changelist.sty}
 %
